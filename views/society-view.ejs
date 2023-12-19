@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/main.css">
+	<title>Dash</title>
+</head>
+
+<body>
+
+	<div class="content">
+		<ul class="breadcrumbs">
+			<li> <a href="/"> Dash</a> </li>
+			<li> / </li>
+			<li> <a href="/societies">Societies</a> </li>
+			<li> / </li>
+			<li> View </li>
+		</ul>
+		<h1>
+			<h1>
+				<%= society.Society_Name %>
+			</h1>
+			<ul>
+				<li> Yearly Cost: <%= society.Membership_Cost %>
+				</li>
+				<li> Facebook Username: <%= society.Facebook_Username %>
+				</li>
+				<li> Society Type: <%= society.Society_Type %>
+				</li>
+				<%if (budgets.length > 0) { %>
+				<li> Budgets: 
+					<ol>
+						<%budgets.forEach(budget => { %>
+							<li><%=budget.Budget_Name%> (£<%=budget.Budget_Amount%>.00)   </li>
+						<% })}%>
+					</ol>
+				</li>
+				<% if (eventCount > 0) { %>
+					<br>
+					<h2 style = "text-align: center;">Events</h2>
+					<br>
+					<section class="dataTable">
+						<table class="data">
+							<tr>
+								<th>Event Name</th>
+								<th>Location</th>
+								<th>Start Date and Time</th>
+								<th>Duration (mins)</th>
+							</tr>
+			
+							<% events.forEach(event => { %>
+								<tr>
+									<td>
+										<%= event.Event_Name %>
+									</td>
+									<td>
+										<%= event.Location %>
+									</td>
+									<td>
+										<%= event.Date_And_Time %>
+									</td>
+									<td>
+										<%= event.Duration %>
+									</td>
+								</tr>
+							<% })%>
+			
+						</table>
+					</section>
+				<% } %>
+			</ul>
+		</h1>
+	</div>
+
+</body>
+
+</html>

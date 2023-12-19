@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/main.css">
+	<title>Dash</title>
+</head>
+
+<body>
+
+	<div class="content">
+		<ul class="breadcrumbs">
+			<li> <a href="/"> Dash</a> </li>
+			<li> / </li>
+			<li> Societies </li>
+		</ul>
+		<h1> Societies </h1>
+
+		<section class="dataTable">
+			<table class="data">
+				<tr>
+					<th>Society Name</th>
+					<th>Membership Cost (£)</th>
+					<th>Facebook Username</th>
+					<th>Society Type</th>
+					<th> Actions </th>
+				</tr>
+
+				<% societies.forEach(society => { %>
+					<tr>
+						<td>
+							<%= society.Society_Name %>
+						</td>
+						<td>
+							<%= society.Membership_Cost %>
+						</td>
+						<td>
+							<%= society.Facebook_Username %>
+						</td>
+						<td>
+							<%= society.Society_Type %>
+						</td>
+						<td> <a href="/societies/edit/<%=society.Society_Name%>"> Edit </a>
+							 <a href="/societies/view/<%=society.Society_Name%>"> View </a> 
+						</td>
+					</tr>
+
+				<% })%>
+
+			</table>
+		</section>
+	</div>
+
+</body>
+
+</html>

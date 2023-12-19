@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/main.css">
+	<title>Dash</title>
+</head>
+
+<%
+// Remove societies from list of recommended societies that the student is already a part of.
+const recSocs = [];
+let found = false;
+
+recommendedSocieties.forEach(recSoc => {
+
+	found = false;
+
+	societies.forEach(soc => {
+		if (recSoc.Society_Name == soc.Society_Name){
+			found = true;
+		}
+	})
+
+	if(!found){
+		recSocs.push(recSoc.Society_Name);
+	}
+})
+
+// Add preceding 0s if the student's URN begins with a 0.
+const urnLength = 6;
+let URN = student.URN.toString();
+
+while (URN.length < urnLength) {
+	URN = '0' + URN;
+} 
+%>
+
+<body>
+
+	<div class="content">
+		<ul class="breadcrumbs">
+			<li> <a href="/"> Dash</a> </li>
+			<li> / </li>
+			<li> <a href="/students">Students</a> </li>
+			<li> / </li>
+			<li> View </li>
+		</ul>
+		<h1>
+			<%= student.Stu_FName %>
+			<%= student.Stu_LName %>
+		</h1>
+		<ul>
+			<li> URN: <%= URN %>
+			</li>
+			<li> DOB: <%= new Date(student.Stu_DOB).toLocaleDateString('en-UK') %>
+			</li>
+			<li> Course: <%= course.Crs_Title %> (Code: <%= student.Crs_Code %>, <%= course.Crs_Enrollment %> enrolled)
+			</li>
+			<li> Phone: <%= student.Stu_Phone %>
+			</li>
+			<li> Type: <%= student.Stu_Type %>
+			</li>
+			<li> <% if (hobbies.length == 0) { %>Student Has No <% } %>Hobbies
+				<ol>
+					<% hobbies.forEach(hobby => { %>
+						<li><%=hobby.Hobby_Name%></li>
+					<% })%>
+				</ol>
+			</li>
+			<li> <% if (societies.length == 0) { %>Student Takes No <% } %>Societies
+				<ol>
+					<% societies.forEach(society => { %>
+						<li><%=society.Society_Name%></li>
+					<% })%>
+				</ol>
+			</li>
+			<li> <% if (recSocs.length == 0) { %>No <% } %>Recommended Societies
+				<ol>
+					<% recSocs.forEach(society => { %>
+						<li><%= society %></li>
+					<% })%>
+				</ol>
+			</li>
+		</ul>
+		<% if (eventCount > 0) { %>
+			<br>
+			<h2 style="text-align: center;">Events to Attend</h2>
+			<br>
+			<section class="dataTable">
+				<table class="data">
+					<tr>
+						<th>Club</th>
+						<th>Event Name</th>
+						<th>Location</th>
+						<th>Start Date and Time</th>
+						<th>Duration (mins)</th>
+					</tr>
+
+					<% events.forEach(event => { %>
+						<tr>
+							<td>
+								<%= event.Society_Name %>
+							</td>
+							<td>
+								<%= event.Event_Name %>
+							</td>
+							<td>
+								<%= event.Location %>
+							</td>
+							<td>
+								<%= event.Date_And_Time %>
+							</td>
+							<td>
+								<%= event.Duration %>
+							</td>
+						</tr>
+					<% })%>
+
+				</table>
+			</section>
+		<% } else { %>
+			<br>
+			<h3 style="text-align: center;">No Events to Attend</h2>
+			<br>
+		<% } %>
+	</div>
+
+</body>
+
+</html>

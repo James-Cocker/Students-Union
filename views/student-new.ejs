@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/main.css">
+	<title>Dash</title>
+</head>
+
+<body>
+
+	<div class="content">
+		<ul class="breadcrumbs">
+			<li> <a href="/"> Dash</a> </li>
+			<li> / </li>
+			<li> <a href="/students">Students</a> </li>
+			<li> / </li>
+			<li>Create a New Student</li>
+		</ul>
+
+		<h1>Create a New Student</h1>
+
+		<h2><%=message%></h2>
+
+		<form method="post" class="edit_form">
+			<ul>
+				<li> 
+					URN: <p> <label for="URN"></label>
+					<input name="URN" minlength="6" maxlength="8" required> </p>
+				</li>
+				<li> 
+					First Name: <p> <label for="Stu_FName"></label>
+					<input name="Stu_FName" required> </p>
+				</li>
+				<li> 
+					Last Name: <p> <label for="Stu_LName"></label>
+					<input name="Stu_LName" required> </p>
+				</li>
+				
+				<li> DOB: <p> <label for="Stu_DOB"></label>
+					<input name="Stu_DOB" type="date" min="1915-01-01" max="2015-01-01" required> </p>
+				</li>
+				<li> Course: <p> <label for="Crs_Code"></label>
+					<select class="form-control" name="Crs_Code" id="student" required>
+						<% courses.forEach( course=>{ %>
+							<option value="<%= course.Crs_Code %>"><%= course.Crs_Title %></option>
+						<% }) %>
+					</select></p>
+				</li>
+				<li> Phone: <p> <label for="Stu_Phone"></label>
+					<input name="Stu_Phone"> </p>
+				</li>
+				<li> Student Type: <p> <label for="Stu_Type"></label>
+					<select class="form-control" name="Stu_Type" id="student" required>
+						<option value="UG">Under Graduate</option>
+						<option value="PG">Post Graduate</option>
+					</select></p>
+				</li>
+			</ul>
+
+			<input type="submit" value="Submit">
+
+		</form>
+	</div>
+
+</body>
+
+</html>

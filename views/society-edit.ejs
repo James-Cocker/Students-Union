@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/main.css">
+	<title>Dash</title>
+</head>
+
+<body>
+
+	<div class="content">
+		<ul class="breadcrumbs">
+			<li> <a href="/"> Dash</a> </li>
+			<li> / </li>
+			<li> <a href="/societies">Societies</a> </li>
+			<li> / </li>
+			<li> Edit </li>
+		</ul>
+		<h1> Edit <%= society.Society_Name %> </h1>
+		<h2><%= message %></h2>
+		<h3>
+			<form method="post" class="edit_form">
+
+				<p><label for="Membership_Cost">Update Cost (nearest £): </label>
+					<input value="<%= society.Membership_Cost %>"
+					name="Membership_Cost" type="number" required>
+				</p>
+
+				<p> <label for="Facebook_Username">Update Facebook Username: </label> 
+					<input value="<%= society.Facebook_Username %>"
+					name="Facebook_Username">
+				</p>
+
+				<input type="submit" value="Update">
+
+			</form>
+			</h1>
+		</h3>
+	</div>
+
+</body>
+
+</html>

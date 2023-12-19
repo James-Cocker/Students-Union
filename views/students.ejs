@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/main.css">
+	<title>Dash</title>
+</head>
+
+<% const urnLength = 6; %>
+
+<body>
+
+	<div class="content">
+		<ul class="breadcrumbs">
+			<li> <a href="/"> Dash</a> </li>
+			<li> / </li>
+			<li> Students </li>
+		</ul>
+		<h1> Students </h1>
+
+		<h2><%= message %></h2>
+
+		<section class="dataTable">
+			<table class="data">
+				<tr>
+					<th> Student ID </th>
+					<th> First Name </th>
+					<th> Last Name </th>
+					<th> DOB </th>
+					<th> Phone </th>
+					<th> Course Code </th>
+					<th> Type </th>
+					<th> Actions </th>
+				</tr>
+
+
+
+				<% students.forEach(Student=> { 
+
+					// Add preceding 0s if the student's URN begins with a 0.
+					let URN = Student.URN.toString();
+					while (URN.length < urnLength) {
+						URN = '0' + URN;
+					} %>
+
+					<tr>
+						<td>
+							<%= URN %>
+						</td>
+						<td>
+							<%= Student.Stu_FName %>
+						</td>
+						<td>
+							<%= Student.Stu_LName %>
+						</td>
+						<td>
+							<%= new Date(Student.Stu_DOB).toLocaleDateString('en-UK') %>
+						</td>
+						<td>
+							<%= Student.Stu_Phone %>
+						</td>
+						<td>
+							<%= Student.Crs_Code %>
+						</td>
+						<td>
+							<%= Student.Stu_Type %>
+						</td>
+						<td> <a href="/students/edit/<%=Student.URN%>"> Edit </a> 
+							 <a href="/students/view/<%=Student.URN%>"> View </a>
+							 <a href="/students/delete/<%=Student.URN%>"> Delete </a>
+						</td>
+
+					</tr>
+
+				<% })%>
+
+				<td> 
+					<a href="/students/new-student"> New Student </a> 
+				</td>
+
+			</table>
+		</section>
+
+	</div>
+
+</body>
+
+</html>
